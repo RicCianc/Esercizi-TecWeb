@@ -1,0 +1,118 @@
+<html>
+  <head>
+    <title>Calendario</title>
+    <style>
+	  body{
+	    display: flex;
+        flex-direction: column;
+	    align-items: center;
+		text-align: center;
+	  }
+	  
+	  .container{ /* Classe Container del Calendario */
+	    width: 80%;
+		background-color:white;
+		border: 0.1em solid red;
+        border-radius: 1em;
+	  }
+	  
+	  .riga{ /* Righe del calendario */
+	    display: grid;
+        grid-template-columns: repeat(7, 1fr);
+	  }
+	  
+	  #sopra{ /* Div che contiene il nome del mese */
+	    background-color:red;
+		color:white;
+		border-radius: 1em 1em 0 0;
+		padding: 0.5em 0;
+	  }
+	  
+	  .nome{ /* Classe dei nomi dei giorni settimanali */
+	    background-color:red;
+		color:white;
+		font-size: 1.4em;
+		margin: 0em 0.1em;
+		height: 2.2em;
+		line-height: 2.2em;
+	  }
+	  
+	  /* Variazioni dei margini per Lunedì e Domenica */
+	  .nome:first-child{
+	    margin: 0em 0.1em 0em 0em;
+	  }
+	  .nome:last-child{
+	    margin: 0em 0em 0em 0.1em;
+	  }
+	  
+	  .giorno{ /* Classe delle date del mese */
+	    background-color:white;
+	    color:red;
+	    margin: 0.2em 0.1em;
+		border:0px;
+		font-size:1.2em;
+		height: 3.5em;
+	  }
+	  
+	  .giorno:first-child{ /* Marzo 2024 inizia da un Venerdì */
+	    grid-column: 5;
+	  }
+	  
+	 .giorno:hover,.giorno:focus{ /* Cambio stile quando ci si va sopra o lo si seleziona */
+	    background-color:red;
+		color:white;
+	 }
+	</style>
+  </head>
+  <body>
+    <h1>Calendario</h1>
+    <div class="container">
+	  <div id="sopra">
+        <h2>MARZO 2024</h2>
+	  </div>
+	  <div class="riga">
+	      <p class="nome">LUN</p>
+		  <p class="nome">MAR</p>
+		  <p class="nome">MER</p>
+		  <p class="nome">GIO</p>
+		  <p class="nome">VEN</p>
+		  <p class="nome">SAB</p>
+		  <p class="nome">DOM</p>
+	   </div>
+	  <div class="riga">
+		<button class="giorno">1</button>
+		<button class="giorno">2</button>
+		<button class="giorno">3</button>
+		<button class="giorno">4</button>
+		<button class="giorno">5</button>
+		<button class="giorno">6</button>
+		<button class="giorno">7</button>
+		<button class="giorno">8</button>
+		<button class="giorno">9</button>
+		<button class="giorno">10</button>
+		<button class="giorno">11</button>
+		<button class="giorno">12</button>
+		<button class="giorno">13</button>
+		<button class="giorno">14</button>
+		<button class="giorno">15</button>
+		<button class="giorno">16</button>
+		<button class="giorno">17</button>
+		<button class="giorno">18</button>
+		<button class="giorno">19</button>
+		<button class="giorno">20</button>
+		<button class="giorno">21</button>
+		<button class="giorno">22</button>
+		<button class="giorno">23</button>
+		<button class="giorno">24</button>
+		<button class="giorno">25</button>
+		<button class="giorno">26</button>
+		<button class="giorno">27</button>
+		<button class="giorno">28</button>
+		<button class="giorno">29</button>
+		<button class="giorno">30</button>
+		<button class="giorno">31</button>
+	  </div>
+    </div><br>
+	<p>©Riccardo Cianci 2024</p>
+  </body>
+</html>
