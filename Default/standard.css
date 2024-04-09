@@ -1,0 +1,114 @@
+/* CSS per la pagina principale */
+body{
+	text-align:center;
+	background-color:white;
+	font-family:Arial;
+}
+
+h1 {
+	font-family:Times New Roman;
+}
+
+footer{
+	position:relative;
+	bottom:-2vh;
+}
+
+#crediti{
+	font-size:1.6vh;
+}
+
+button {
+  width: 20%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+/*Dropdown*/
+
+.dropbtn {
+  background-color:LightGreen;
+  color: black;
+  padding: 14px 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.dropdown {
+  position: none;
+  width:100%;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+ /* top: 45px;*/
+  width:47%;
+  background-color: #f9f9f9;
+  padding: 14px 16px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  position: relative;
+  padding: 14px 16px;
+  text-decoration: none;
+  display: block;
+  z-index: 1;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1;}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+  z-index: 2;
+  /*top: 45px;*/
+}
+
+.dropdown:hover .dropbtn {
+  background-color:LightCoral;
+}
+
+ul {
+  list-style-type: none;
+  margin:0;
+  padding:0;
+  overflow: hidden;
+  z-index:0;
+}
+
+li {
+  float: left;
+  margin:0;
+  width: 50%;
+  background-color:LightGreen;
+}
+
+li a {
+  display: block;
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color:LightCoral;
+}
+
+.active {
+  background-color:LightBlue;
+}
