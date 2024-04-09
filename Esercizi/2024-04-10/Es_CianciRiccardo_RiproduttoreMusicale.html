@@ -25,6 +25,7 @@
 	    flex: 1 30%;
 		border: 0.1em solid black;
 		border-radius: 1em;
+		min-height: 200px;
       }
 	  
 	  .volume-slider {
@@ -39,6 +40,18 @@
             opacity: 1;
       }
 	  
+	  .descr {
+          opacity: 0;
+          background-color: white;
+          border: 0.1em solid black;
+		  border-radius: 1em;
+          transition: opacity 0.5s ease;
+          z-index: 2;
+          position: absolute;
+          top: 9vh;
+		  width: 30vh;
+      }
+	  
 	  footer {
 	    position: relative;
 	    bottom : -2vh;
@@ -49,39 +62,64 @@
   <body>
     <h1>Riproduttore Musicale</h1>
 	<a class="home_icon" href="../../index.html"><img src="https://upload.wikimedia.org/wikipedia/commons/0/06/Home_mpk.png"></a>
+	<div class="descr">
+	  <h1 id="titolo">Titolo</h1>
+	  <p id="descrizione">Descrizione</p>
+	</div>
     <section>
 	  <article>
-	    <img src=".\Files\Funicoli_img.jpg">
-		<div id="musica-b">
+	    <img id="descr-0" src=".\Files\Funicoli_img.jpg">
+		<div id="musica-0">
 		  <h3>Funicolì Funicolà</h3>
 		  <p>Artisti: Giuseppe Turco / Luigi Denza</p>
-		  <button id="bottone_0" onclick="play(0)">▷</button>
+		  <button id="bottone_0" onclick="play(0)"><i class="bi bi-play-fill"></i></button>
+		  <div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
+            <input class="progress-bar" type="range" id="progressSlider" class="form-range" min="0" max="100" value="0" step="1" style="width: 100%;">
+          </div>
+          <div class="d-flex justify-content-between">
+                <span id="currentTime">0:00</span>
+                <span id="totalDuration">0:00</span>
+          </div>
 		</div>
 	  </article>
 	  <article>
-	    <img src=".\Files\SorcioDominioPubblico_img.gif">
-		<div id="musica-b">
+	    <img id="descr-1" src=".\Files\SorcioDominioPubblico_img.gif">
+		<div id="musica-1">
 		  <h3>Steamboat Bill</h3>
 		  <p>Artisti: Arthur Collins</p>
-		  <button id="bottone_1" onclick="play(1)">▷</button>
+		  <button id="bottone_1" onclick="play(1)"><i class="bi bi-play-fill"></i></button>
+		  <div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
+            <input class="progress-bar" type="range" id="progressSlider_1" class="form-range" min="0" max="100" value="0" step="1" style="width: 100%;">
+          </div>
+          <div class="d-flex justify-content-between">
+              <span id="currentTime_1">0:00</span>
+              <span id="totalDuration_1">0:00</span>
+          </div>
 		</div>
 	  </article>
 	  <article>
-	    <img src=".\Files\Inno_img.jpg">
-		<div id="musica-b">
+	    <img id="descr-2" src=".\Files\Inno_img.jpg">
+		<div id="musica-2">
 		  <h3>Canto degli Italiani</h3>
 		  <p>Artisti: Goffredo Mameli / Michele Novaro</p>
-		  <button id="bottone_2" onclick="play(2)">▷</button>
+		  <button id="bottone_2" onclick="play(2)"><i class="bi bi-play-fill"></i></button>
+		  <div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
+            <input class="progress-bar" type="range" id="progressSlider_2" class="form-range" min="0" max="100" value="0" step="1" style="width: 100%;">
+          </div>
+          <div class="d-flex justify-content-between">
+              <span id="currentTime_2">0:00</span>
+              <span id="totalDuration_2">0:00</span>
+          </div>
 		</div>
 	  </article>
 	</section>
 	<div class="volume-control-container d-flex align-items-center justify-content-center">
-        <i class="bi bi-volume-down-fill"></i>
+        <i class="bi bi-volume-off-fill"></i>
         <input type="range" id="volumeControl" class="form-range volume-slider" min="0" max="1" step="0.1" value="1">
         <i class="bi bi-volume-up-fill"></i>
     </div>
 	<footer>
-	  <p>©Riccardo Cianci 2024<br>Le musiche qui selezionate rientrano nel pubblico dominio essendo passati più di 70 anni dalla morte del compositore..</p>
+	  <p>©Riccardo Cianci 2024<br>Le musiche qui selezionate rientrano nel pubblico dominio essendo passati più di 70 anni dalla morte del compositore.</p>
 	</footer>
 	<script>
 	  // Lo script era basato su una vecchia versione del codice distribuita dal tutor
@@ -90,6 +128,21 @@
 	  var audio_1 = new Audio('./Files/Steamboat.mp3');
 	  var audio_2 = new Audio('./Files/Mameli.ogg');
 	  var a = audio_0;
+	  
+	  // Audio_0
+	  const progressSlider = document.getElementById('progressSlider');
+      const currentTimeDisplay = document.getElementById('currentTime');
+      const totalDurationDisplay = document.getElementById('totalDuration');
+	  
+      // Audio_1
+      const progressSlider1 = document.getElementById('progressSlider_1');
+      const currentTimeDisplay1 = document.getElementById('currentTime_1');
+      const totalDurationDisplay1 = document.getElementById('totalDuration_1');
+
+      // Audio_2
+      const progressSlider2 = document.getElementById('progressSlider_2');
+      const currentTimeDisplay2 = document.getElementById('currentTime_2');
+      const totalDurationDisplay2 = document.getElementById('totalDuration_2');
 	  
 	  function play(id){
 	    if(id == 0){
@@ -102,24 +155,115 @@
 		
 		if(riproduzione){
 		   a.pause();
-		   document.getElementById("bottone_"+id).innerHTML = "▷";
+		   document.getElementById("bottone_"+id).innerHTML = "<i class='bi bi-play-fill'></i>";
 		   riproduzione = false;
 		}else{
 		   a.play();
-		   document.getElementById("bottone_"+id).innerHTML = "||";
+		   document.getElementById("bottone_"+id).innerHTML = "<i class='bi bi-pause-fill'></i>";
 		   riproduzione = true;
 		}
 	  }
 	  
 	  a.onended = function() {
-	    document.getElementById("bottone_"+id).innerHTML = "▷";
+	    document.getElementById("bottone_"+id).innerHTML = "<i class='bi bi-play-fill'></i>";
 		riproduzione = false;
 	  }
-	  
+
+        // Format time to display as minutes:seconds
+        function formatTime(seconds) {
+            let minutes = Math.floor(seconds / 60);
+            seconds = Math.floor(seconds % 60);
+            return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+        }
+		
+        // Display total duration once the audio metadata is loaded
+        audio_0.addEventListener('loadedmetadata', () => {
+            totalDurationDisplay.textContent = formatTime(audio_0.duration);
+        });
+		
+        // Update current time and progress bar as the audio plays
+        audio_0.addEventListener('timeupdate', function () {
+            const percentage = (this.currentTime / this.duration) * 100;
+            progressSlider.value = percentage;
+            currentTimeDisplay.textContent = formatTime(this.currentTime);
+        });
+
+        // Update the current time when the user seeks
+        progressSlider.addEventListener('input', function () {
+            const seekTime = (audio_0.duration / 100) * progressSlider.value;
+            audio_0.currentTime = seekTime;
+        });
+		
+        // Stesso per Audio_1
+        audio_1.addEventListener('loadedmetadata', () => {
+            totalDurationDisplay1.textContent = formatTime(audio_1.duration);
+        });
+
+        audio_1.addEventListener('timeupdate', function () {
+           const percentage = (this.currentTime / this.duration) * 100;
+           progressSlider1.value = percentage;
+           currentTimeDisplay1.textContent = formatTime(this.currentTime);
+        });
+
+        progressSlider1.addEventListener('input', function () {
+          const seekTime = (audio_1.duration / 100) * progressSlider1.value;
+          audio_1.currentTime = seekTime;
+        });
+
+        // Equivalente per Audio_2
+        audio_2.addEventListener('loadedmetadata', () => {
+          totalDurationDisplay2.textContent = formatTime(audio_2.duration);
+        });
+
+        audio_2.addEventListener('timeupdate', function () {
+         const percentage = (this.currentTime / this.duration) * 100;
+         progressSlider2.value = percentage;
+         currentTimeDisplay2.textContent = formatTime(this.currentTime);
+        });
+
+        progressSlider2.addEventListener('input', function () {
+         const seekTime = (audio_2.duration / 100) * progressSlider2.value;
+         audio_2.currentTime = seekTime;
+        });
+
 	  // Volume Control remains unchanged
       document.getElementById('volumeControl').addEventListener('input', function () {
           a.volume = this.value;
       });
+
+      // Utilizzo mouseover con Javascript perché hover di CSS non sembrava andare
+     document.getElementById('descr-0').addEventListener('mouseover', function() {
+	   document.querySelector('.descr').style.left = '33%';
+	   document.getElementById('titolo').innerHTML = "Funicolì Funicolà";
+	   document.getElementById('descrizione').innerHTML = "Funicolì Funicolà è una canzone napoletana composta da Luigi Denza e scritta da Giuseppe Turco nel 1880. La canzone è ispirata all'inaugarazione della prima funicolare del Vesuvio. È diventata col tempo una delle canzoni più stereotipate dell'Italia.";
+       document.querySelector('.descr').style.opacity = '1';
+     });
+
+     document.getElementById('descr-0').addEventListener('mouseout', function() {
+       document.querySelector('.descr').style.opacity = '0';
+     });
+
+    document.getElementById('descr-1').addEventListener('mouseover', function() {
+	   document.querySelector('.descr').style.left = '66.5%';
+	   document.getElementById('titolo').innerHTML = "Steamboat Bill";
+	   document.getElementById('descrizione').innerHTML = "Steamboat Bill è una canzone cantata da Arthur Collins, scritta da Ren Shields e musicata dai Leighton Brothers nel 1910. Il successo vero e proprio avvenne nel 1928 col film 'Io... ed il Ciclone' ed il corto 'Steamboat Willie' di Topolino, primo cartone in assoluto ad avere anche il suono. Quest'ultimo è caduto nel Pubblico Dominio quest'anno, rendendo il corto e quelle iterazioni di Topolino, Minnie e Pietro pubblici.";
+       document.querySelector('.descr').style.opacity = '1';
+    });
+
+    document.getElementById('descr-1').addEventListener('mouseout', function() {
+       document.querySelector('.descr').style.opacity = '0';
+    });
+
+    document.getElementById('descr-2').addEventListener('mouseover', function() {
+	  document.querySelector('.descr').style.left = '53%';
+	   document.getElementById('titolo').innerHTML = "Canto deli Italiani";
+	   document.getElementById('descrizione').innerHTML = "Il Canto degli Italiani, anche chiamato l'Inno di Mameli, è l'inno nazionale della Repubblica Italiana, scritto da Goffredo Mameli e musicato da Michele Novaro nel 1847. Anche se in verità è lungo 6 strofe, si canta solo la prima col ritornello.";
+      document.querySelector('.descr').style.opacity = '1';
+    });
+
+    document.getElementById('descr-2').addEventListener('mouseout', function() {
+      document.querySelector('.descr').style.opacity = '0';
+    });
 	</script>
   </body>
 </html>
